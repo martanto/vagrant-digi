@@ -15,6 +15,18 @@ class CreateSdsIndicesTable extends Migration
     {
         Schema::create('sds_indices', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('filename');
+            $table->string('scnl')->index();
+            $table->foreign('scnl')
+                ->references('scnl')
+                ->on('seismic_stations');
+            $table->date('date')->index();
+            $table->float('sampling_rate')->default(0.0);
+            $table->float('min_amplitude')->default(0.0);
+            $table->float('max_amplitude')->default(0.0);
+            $table->float('availability')->default(0.0);
+            $table->bigInteger('filesize')->default(0);
+            $table->unique(['scnl','date']);
             $table->timestamps();
         });
     }
