@@ -30,7 +30,7 @@
     <meta name="author" content="{{ config('app.author') }}">
 
     <!-- Favicon -->
-    <link href="{{ asset('favicon.ico') }}" rel="shortcut icon">
+    <link href="{{ asset('favicon.png') }}" rel="shortcut icon">
 
     <title>Digital Geofisika</title>
 

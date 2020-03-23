@@ -11,9 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/','HomeController@index')
+    ->name('home');
+
+Route::get('station','HomeController@station')
+    ->name('station');
+
+Route::get('data','HomeController@data')
+    ->name('data');
+
+Route::get('data/{scnl}','HomeController@dataShow')
+    ->name('data.show');
 
 Route::get('login','LoginController@index')
     ->name('login')

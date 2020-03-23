@@ -6,11 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class SdsIndex extends Model
 {
-
-    protected $casts = [
-        'date' => 'datetime:Y-m-d',
-    ];
-
     /**
      * The attributes that are mass assignable.
      *
@@ -18,7 +13,7 @@ class SdsIndex extends Model
      */
     protected $fillable = [
         'filename',
-        'scnl_id',
+        'scnl',
         'date',
         'sampling_rate',
         'min_amplitude',
@@ -29,5 +24,9 @@ class SdsIndex extends Model
 
     protected $guarded  = [
         'id'
+    ];
+
+    protected $dates = [
+        'date',
     ];
 }

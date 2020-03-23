@@ -24,7 +24,7 @@
     <!-- Favicon -->
     <link href="{{ asset('favicon.ico') }}" rel="shortcut icon">
 
-    <title>Digital Geofisika</title>
+    <title>{{ config('app.name') }}</title>
 
     <link rel="stylesheet" href="{{ asset('vendors/@fortawesome/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/ionicons/css/ionicons.min.css') }}">
