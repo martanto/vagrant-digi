@@ -28,10 +28,17 @@
                         <div class="media align-sm-items-center">
                             <div class="tx-40 tx-lg-60 lh-0 tx-primary"><i class="fas fa-file-archive"></i></div>
                             <div class="media-body mg-l-15">
-                                <h6 class="tx-12 tx-lg-14 tx-semibold tx-uppercase tx-spacing-1 mg-b-5">Jumlah Station</h6>
+                                <h6 class="tx-12 tx-lg-14 tx-semibold tx-uppercase tx-spacing-1 mg-b-5">Jumlah Alat</h6>
                                 <div class="d-flex align-items-baseline">
                                     <h2 class="tx-20 tx-lg-28 tx-normal tx-rubik tx-spacing--2 lh-2 mg-b-0">{{ $stations->count() }}</h2>
                                     <h6 class="tx-11 tx-lg-16 tx-normal tx-rubik tx-danger mg-l-5 lh-2 mg-b-0"> alat</h6>
+                                  </div>
+                            </div>
+                            <div class="media-body mg-l-15">
+                                <h6 class="tx-12 tx-lg-14 tx-semibold tx-uppercase tx-spacing-1 mg-b-5">Total Data</h6>
+                                <div class="d-flex align-items-baseline">
+                                    <h2 class="tx-20 tx-lg-28 tx-normal tx-rubik tx-spacing--2 lh-2 mg-b-0">{{ number_format($stations->sum('data_count')) }}</h2>
+                                    <h6 class="tx-11 tx-lg-16 tx-normal tx-rubik tx-danger mg-l-5 lh-2 mg-b-0"> data</h6>
                                   </div>
                             </div>
                         </div>

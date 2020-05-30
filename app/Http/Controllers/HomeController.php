@@ -12,6 +12,7 @@ class HomeController extends Controller
     public function index()
     {
         $alats = SeismicStation::select('scnl','latitude','longitude','elevasi')
+                    ->whereNotNull('latitude')
                     ->withCount('data')
                     ->get();
         return view('home.index', compact('alats'));
@@ -19,7 +20,9 @@ class HomeController extends Controller
 
     public function station()
     {
-        $stations = SeismicStation::withCount('data')->get();
+        $stations = SeismicStation::withCount('data')->get()->reject(function($item) {
+            return $item['data_count'] == 0;
+        });
         $bar_label = $stations->pluck('station');
         $bar_dataset = $stations->pluck('data_count');
         return view('home.station.index', compact('stations','bar_label','bar_dataset'));
@@ -33,24 +36,19 @@ class HomeController extends Controller
 
     public function dataShow($scnl)
     {
-        $sdses_chart = SdsIndex::where('scnl',$scnl)
-                ->select('scnl','date','availability')
-                ->orderBy('date')
-                ->limit(100)
-                ->get();
-
-        $bar_label = $sdses_chart->pluck('date')->map(function($date) {
-            return $date->format('Y-m-d');
-        });
-
-        $bar_dataset = $sdses_chart->pluck('availability');
-
-        $sdses = SdsIndex::where('scnl',$scnl)
+        $sdses = SdsIndex::where('scnl_id',$scnl)
                 ->orderBy('date')
                 ->paginate(20);
 
+        $bar_label = $sdses->pluck('date')->map(function($date) {
+            return $date->format('Y-m-d');
+        });
+
+        $bar_dataset = $sdses->pluck('availability');
+
         if ($sdses->isEmpty())
             abort(404);
+
         return view('home.data.show', compact('sdses','bar_label','bar_dataset'));
     }
 }

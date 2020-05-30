@@ -16,7 +16,7 @@ $factory->define(SdsIndex::class, function (Faker $faker) use ($scnls) {
 
     return [
         'filename' => Str::random(10),
-        'scnl' => $scnl,
+        'scnl_id' => $scnl,
         'date' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now')->format('Y-m-d'),
         'sampling_rate' => $sps[array_rand($sps)],
         'min_amplitude' => rand(-100,-1),

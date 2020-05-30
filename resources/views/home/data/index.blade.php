@@ -32,8 +32,8 @@
                                 <div class="media-body mg-l-30">
                                     <h6 class="tx-12 tx-lg-14 tx-semibold tx-uppercase tx-spacing-1 mg-b-5">Total Size</h6>
                                     <div class="d-flex align-items-baseline">
-                                        <h2 class="tx-20 tx-lg-28 tx-normal tx-rubik tx-spacing--2 lh-2 mg-b-0">{{ $sdses->getCollection()->sum('filesize') }}</h2>
-                                        <h6 class="tx-11 tx-lg-16 tx-normal tx-rubik tx-danger mg-l-5 lh-2 mg-b-0"> MB</h6>
+                                        <h2 class="tx-20 tx-lg-28 tx-normal tx-rubik tx-spacing--2 lh-2 mg-b-0">{{ number_format($sdses->getCollection()->sum('filesize')/1000) }}</h2>
+                                        <h6 class="tx-11 tx-lg-16 tx-normal tx-rubik tx-danger mg-l-5 lh-2 mg-b-0"> KB</h6>
                                       </div>
                                 </div>
                             </div>
@@ -54,11 +54,11 @@
                             <tbody>
                                 @foreach ($sdses as $sds)
                                 <tr>
-                                    <td><a href="{{ route('data.show', $sds->scnl) }}">{{ $sds->scnl }}</a></td>
+                                    <td><a href="{{ route('data.show', $sds->scnl_id) }}">{{ $sds->scnl_id }}</a></td>
                                     <td>{{ $sds->date->format('Y-m-d') }}</td>
                                     <td>{{ $sds->sampling_rate }}</td>
                                     <td>{{ $sds->availability }}%</td>
-                                    <td>{{ $sds->filesize }}</td>
+                                    <td>{{ number_format($sds->filesize/1000) }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

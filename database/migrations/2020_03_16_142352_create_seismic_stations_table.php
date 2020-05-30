@@ -19,9 +19,9 @@ class CreateSeismicStationsTable extends Migration
             $table->string('channel');
             $table->string('network');
             $table->string('location');
-            $table->float('latitude',10,7);
-            $table->float('longitude',10,7);
-            $table->float('elevasi',6,2);
+            $table->float('latitude')->nullable();
+            $table->float('longitude')->nullable();
+            $table->float('elevasi')->nullable();
             $table->boolean('status')->default(0);
             $table->string('scnl')->unique();
             $table->timestamps();

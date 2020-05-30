@@ -14,6 +14,6 @@
             </ul>
         </li>
         <li class="nav-item {{ active('data.*') }}"><a href="{{ route('data') }}" class="nav-link"><i data-feather="box"></i>Data</a></li>
-        <li class="nav-item {{ active('data.*') }}"><a href="#" class="nav-link"><i data-feather="box"></i>Tentang Kami</a></li>
+        <li class="nav-item"><a href="#" class="nav-link"><i data-feather="box"></i>Tentang Kami</a></li>
     </ul>
 </div>

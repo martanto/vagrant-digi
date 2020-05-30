@@ -20,7 +20,7 @@ class SeismicStation extends Model
 
     public function data()
     {
-        return $this->hasMany('App\SdsIndex','scnl','scnl');
+        return $this->hasMany('App\SdsIndex','scnl_id','scnl');
     }
 
 }
