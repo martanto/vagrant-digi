@@ -13,22 +13,25 @@ class CreateSdsIndicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sds_indices', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('filename');
-            $table->string('scnl_id')->index();
-            $table->foreign('scnl_id')
-                ->references('scnl')
-                ->on('seismic_stations');
-            $table->date('date')->index();
-            $table->float('sampling_rate')->default(0.0);
-            $table->float('min_amplitude')->default(0.0);
-            $table->float('max_amplitude')->default(0.0);
-            $table->float('availability')->default(0.0);
-            $table->bigInteger('filesize')->default(0);
-            $table->unique(['scnl_id','date']);
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('sds_indices')) {
+            Schema::create('sds_indices', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->string('filename');
+                $table->string('scnl_id')->index();
+                $table->foreign('scnl_id')
+                    ->references('scnl')
+                    ->on('seismic_stations');
+                $table->date('date')->index();
+                $table->float('sampling_rate')->default(0.0);
+                $table->float('min_amplitude')->default(0.0);
+                $table->float('max_amplitude')->default(0.0);
+                $table->float('availability')->default(0.0);
+                $table->bigInteger('filesize')->default(0);
+                $table->unique(['scnl_id', 'date']);
+                $table->timestamps();
+            });
+        }
+
     }
 
     /**

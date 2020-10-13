@@ -22,13 +22,14 @@
     <meta name="author" content="{{ config('app.author') }}">
 
     <!-- Favicon -->
-    <link href="{{ asset('favicon.ico') }}" rel="shortcut icon">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
 
     <title>{{ config('app.name') }}</title>
 
     <link rel="stylesheet" href="{{ asset('vendors/@fortawesome/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/ionicons/css/ionicons.min.css') }}">
-
+    @yield('add-vendor-css')
     <link rel="stylesheet" href="{{ asset('css/dashforge.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashforge.dashboard.css') }}">
+    @yield('add-css')
 </head>

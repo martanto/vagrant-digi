@@ -33,48 +33,53 @@
                     <div class="media align-sm-items-center">
                         <div class="tx-40 tx-lg-60 lh-0 tx-primary"><i class="fas fa-file-archive"></i></div>
                         <div class="media-body mg-l-15">
-                            <h6 class="tx-12 tx-lg-14 tx-semibold tx-uppercase tx-spacing-1 mg-b-5">Jumlah User(s)</h6>
+                            <h6 class="tx-12 tx-lg-14 tx-semibold tx-uppercase tx-spacing-1 mg-b-5">Jumlah Stations(s)</h6>
                             <div class="d-flex align-items-baseline">
-                                <h2 class="tx-20 tx-lg-28 tx-normal tx-rubik tx-spacing--2 lh-2 mg-b-0">{{ $users->count() }}</h2>
-                                <h6 class="tx-11 tx-lg-16 tx-normal tx-rubik tx-danger mg-l-5 lh-2 mg-b-0"> user(s)</h6>
-                                </div>
+                                <h2 class="tx-20 tx-lg-28 tx-normal tx-rubik tx-spacing--2 lh-2 mg-b-0">
+                                    {{ $stations->count() }}</h2>
+                                <h6 class="tx-11 tx-lg-16 tx-normal tx-rubik tx-danger mg-l-5 lh-2 mg-b-0"> station(s)</h6>
+                            </div>
                         </div>
                     </div>
                     <div class="d-flex flex-column flex-sm-row mg-t-20 mg-md-t-0">
-                        <button class="btn btn-sm btn-white btn-uppercase pd-x-15"><i data-feather="download" class="mg-r-5"></i> Export CSV</button>
-                        <button onclick="window.location.href='{{ route('digi.user.create') }}';" class="btn btn-sm btn-white btn-uppercase pd-x-15 mg-t-5 mg-sm-t-0 mg-sm-l-5"><i data-feather="plus" class="mg-r-5"></i> Add User</button>
+                        <button class="btn btn-sm btn-white btn-uppercase pd-x-15"><i data-feather="download"
+                                class="mg-r-5"></i> Export CSV</button>
+                        <button onclick="window.location.href='{{ route('digi.station.create') }}';"
+                            class="btn btn-sm btn-white btn-uppercase pd-x-15 mg-t-5 mg-sm-t-0 mg-sm-l-5"><i
+                                data-feather="plus" class="mg-r-5"></i> Add Station</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="col-lg-12 mg-t-20">
-        @if (session('message'))
-        <div class="alert alert-success d-flex align-items-center" role="alert"><i data-feather="alert-circle" class="mg-r-10"></i> {{ session('message') }}</div>
-        @endif
+            @if (session('message'))
+            <div class="alert alert-success d-flex align-items-center" role="alert"><i data-feather="alert-circle"
+                    class="mg-r-10"></i> {{ session('message') }}</div>
+            @endif
             <div class="card">
                 <div class="card-header">
-                    <h6 class="mg-b-0">Tabel User</h6>
+                    <h6 class="mg-b-0">Tabel Station</h6>
                 </div><!-- card-header -->
                 <div class="card-body pd-lg-25">
                     <table id="example2" class="table">
                         <thead>
                             <tr>
                                 <th class="wd-20p">Name</th>
-                                <th class="wd-25p">Phone</th>
-                                <th class="wd-20p">Email</th>
+                                <th class="wd-25p">SCNL</th>
+                                <th class="wd-20p">Jumlah Data</th>
                                 <th class="wd-15p">Status</th>
                                 <th class="wd-20p">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
+                            @foreach ($stations as $station)
                             <tr>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->phone }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->status ? 'Aktif' : 'Tidak Aktif' }}</td>
-                                <td><a href="{{ route('digi.user.show', $user->id) }}" type="button"
+                                <td>{{ $station->station }}</td>
+                                <td>{{ $station->scnl }}</td>
+                                <td>{{ $station->data_count }}</td>
+                                <td>{{ $station->status ? 'Aktif' : 'Tidak Aktif' }}</td>
+                                <td><a href="{{ route('digi.station.show', $station->id) }}" type="button"
                                         class="btn btn-xs btn-outline-primary">View</a></td>
                             </tr>
                             @endforeach

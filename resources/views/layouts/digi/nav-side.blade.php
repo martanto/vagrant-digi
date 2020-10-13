@@ -5,15 +5,15 @@
             <i data-feather="users"></i><span>Users</span>
         </a>
     </li>
-    <li class="nav-item {{ active('digi.user.*') }}">
+    <li class="nav-item {{ active('digi.role.*') }}">
         <a href="{{ route('digi.role.index') }}" class="nav-link">
             <i data-feather="hash"></i><span>Roles</span>
         </a>
     </li>
 
     <li class="nav-label mg-t-25">Data</li>
-    <li class="nav-item">
-        <a href="" class="nav-link">
+    <li class="nav-item {{ active('digi.station.*') }}">
+        <a href="{{ route('digi.station.index') }}" class="nav-link">
             <i data-feather="pie-chart"></i><span>Data Monitoring</span>
         </a>
     </li>

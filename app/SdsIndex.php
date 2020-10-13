@@ -13,7 +13,7 @@ class SdsIndex extends Model
      */
     protected $fillable = [
         'filename',
-        'scnl',
+        'scnl_id',
         'date',
         'sampling_rate',
         'min_amplitude',

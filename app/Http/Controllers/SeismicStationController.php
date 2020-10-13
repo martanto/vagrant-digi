@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\SeismicStation;
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
-class UserController extends Controller
+class SeismicStationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('digi.user.index', ['users'=> User::all()]);
+        return view('digi.station.index', [
+            'stations' => SeismicStation::has('data')
+                            ->with('data')
+                            ->withCount('data')
+                            ->get()]);
     }
 
     /**
@@ -26,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('digi.user.create');
+        //
     }
 
     /**
@@ -37,37 +39,27 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create(Validator::make($request->all(), [
-                'name' => 'required|string|max:255',
-                'phone' => 'required|string|max:12|min:10',
-                'email' => 'required|email|unique:users,email',
-                'is_active' => 'required|boolean',
-                'password' => 'required|confirmed|string|min:6',
-            ])->validate()
-        );
-
-        return redirect()->route('digi.user.index')
-                ->with('message', "User {$request->name} berhasil ditambahkan");
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\SeismicStation  $seismicStation
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(SeismicStation $seismicStation)
     {
-        return SeismicStation::has('data')->with('data')->get();
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\SeismicStation  $seismicStation
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(SeismicStation $seismicStation)
     {
         //
     }
@@ -76,10 +68,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\SeismicStation  $seismicStation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, SeismicStation $seismicStation)
     {
         //
     }
@@ -87,10 +79,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\SeismicStation  $seismicStation
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(SeismicStation $seismicStation)
     {
         //
     }
